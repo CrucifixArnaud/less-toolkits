@@ -119,7 +119,7 @@
 \***********************/
 
 .animation (@name, @duration: 1000ms, @delay: 0, @ease: ease, @direction: normal, @iteration: infinite) {
-	@params: @name @duration @timing @delay @iterations @direction;
+	@params: @name @duration @delay @ease @direction @iteration;
 	-webkit-animation: @params;
 		 -moz-animation: @params;
 			-ms-animation: @params;
