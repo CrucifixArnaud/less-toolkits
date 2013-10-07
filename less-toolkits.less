@@ -132,12 +132,36 @@
 	$Transition
 \***********************/
 
-.transition (@transition) {
-	-webkit-transition: @transition;
-		 -moz-transition: @transition;
-			-ms-transition: @transition;
-			 -o-transition: @transition;
-			 		transition: @transition;
+.transition (@transition:all, @duration: 500ms, @ease: ease, @delay: 0, @prefix: false) when (@prefix = false){
+
+	@result: @transition @duration @ease @delay;
+
+	-webkit-transition: @result;
+		 -moz-transition: @result;
+			-ms-transition: @result;
+			 -o-transition: @result;
+			 		transition: @result;
+}
+
+.transition (@transition:all, @duration: 500ms, @ease: ease, @delay: 0, @prefix: false) when (@prefix = true){
+	
+	@w3cTransition: 		@transition;
+	@webkitTransition:	~"-webkit-@{transition}";
+	@mozTransition:			~"-moz-@{transition}";
+	@operaTransition:		~"-o-@{transition}";
+	@msTransition:			~"-ms-@{transition}";
+
+	@w3cResult: 		@w3cTransition @duration @ease @delay;
+	@webkitResult:	@webkitTransition @duration @ease @delay;
+	@mozResult:			@mozTransition @duration @ease @delay;
+	@operaResult:		@operaTransition @duration @ease @delay;
+	@msResult:			@msTransition @duration @ease @delay;
+
+	-webkit-transition: @webkitResult;
+		 -moz-transition: @mozResult;
+			-ms-transition: @msResult;
+			 -o-transition: @operaResult;
+			 		transition: @w3cResult;
 }
 
 /***********************\

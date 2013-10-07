@@ -190,7 +190,7 @@ Default value:
 
 ### Transition
 
-	.transition (@transition);
+	.transition (@transition, @duration, @ease, @delay, @prefix);
 
 Result in:
 
@@ -202,7 +202,29 @@ Result in:
 
 Default value:
 
-	none
+	@transition: all;
+	@duration: 500ms; 
+	@ease: ease;
+	@delay:	0;
+	@prefix: false;
+	
+####Prefix:
+
+Some properties (for ex: transform) need various vendor prefix to work on the largest amount of browser.
+
+The **transition** mixin take care of this, if you set **@prefix** to **true**
+
+(** Warning ** : to automaticaly add vendor prefix the **@transition** need to be send as a string (**"transition"**) ).
+
+	.transition ("transform", 500ms, ease, 0, true);
+	
+Result in:
+
+	-webkit-transition: -webkit-transform 500ms ease 0;
+	   -moz-transition: -moz-transform 500ms ease 0;
+		-ms-transition: -ms-transform 500ms ease 0;
+		 -o-transition: -o-transform 500ms ease 0;
+			transition: transform 500ms ease 0;
 	
 ### Transform
 
