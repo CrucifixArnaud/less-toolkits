@@ -134,13 +134,21 @@
 
 .transition (@transition:all, @duration: 500ms, @ease: ease, @delay: 0, @prefix: false) when (@prefix = false){
 
-	@result: @transition @duration @ease @delay;
+	.result(@transition, @duration, @ease, @delay) when (@delay > 0){
+		@result: @transition @duration @ease @delay;	
+	};
+
+	.result(@transition, @duration, @ease, @delay) when (@delay = 0){
+		@result: @transition @duration @ease;		
+	};
+
+	.result(@transition, @duration, @ease, @delay);
 
 	-webkit-transition: @result;
-		 -moz-transition: @result;
+	 	 -moz-transition: @result;
 			-ms-transition: @result;
-			 -o-transition: @result;
-			 		transition: @result;
+		 	 -o-transition: @result;
+		 			transition: @result;
 }
 
 .transition (@transition:all, @duration: 500ms, @ease: ease, @delay: 0, @prefix: false) when (@prefix = true){
@@ -151,17 +159,31 @@
 	@operaTransition:		~"-o-@{transition}";
 	@msTransition:			~"-ms-@{transition}";
 
-	@w3cResult: 		@w3cTransition @duration @ease @delay;
-	@webkitResult:	@webkitTransition @duration @ease @delay;
-	@mozResult:			@mozTransition @duration @ease @delay;
-	@operaResult:		@operaTransition @duration @ease @delay;
-	@msResult:			@msTransition @duration @ease @delay;
+	.result(@transition, @duration, @ease, @delay) when (@delay > 0){
+		@w3cResult: 		@w3cTransition @duration @ease @delay;
+		@webkitResult:	@webkitTransition @duration @ease @delay;
+		@mozResult:			@mozTransition @duration @ease @delay;
+		@operaResult:		@operaTransition @duration @ease @delay;
+		@msResult:			@msTransition @duration @ease @delay;
+	};
+
+	.result(@transition, @duration, @ease, @delay) when (@delay = 0){
+		@w3cResult: 		@w3cTransition @duration @ease;
+		@webkitResult:	@webkitTransition @duration @ease;
+		@mozResult:			@mozTransition @duration @ease;
+		@operaResult:		@operaTransition @duration @ease;
+		@msResult:			@msTransition @duration @ease;
+	};
+
+	
+	.result(@transition, @duration, @ease, @delay);
 
 	-webkit-transition: @webkitResult;
-		 -moz-transition: @mozResult;
-			-ms-transition: @msResult;
-			 -o-transition: @operaResult;
-			 		transition: @w3cResult;
+			 -moz-transition: @mozResult;
+				-ms-transition: @msResult;
+				 -o-transition: @operaResult;
+				 		transition: @w3cResult;
+
 }
 
 /***********************\
