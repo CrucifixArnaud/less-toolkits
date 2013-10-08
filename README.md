@@ -97,6 +97,21 @@ Result in:
 Default value:
 
 	@alpha: 0.5;
+	
+### Background-attachment
+
+	.bg-attachment(@type);
+
+Result in:
+
+	-webkit-background-attachment:@type;
+	   -moz-background-attachment:@type;
+		 -o-background-attachment:@type;
+			background-attachment:@type;
+
+Default value:
+
+	@type: scroll;
 
 ### Gradient
 
