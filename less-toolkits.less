@@ -153,7 +153,7 @@
 
 .transition (@transition:all, @duration: 500ms, @ease: ease, @delay: 0, @prefix: false) when (@prefix = true){
 	
-	@w3cTransition: 		@transition;
+	@w3cTransition: 		~"@{transition}";
 	@webkitTransition:	~"-webkit-@{transition}";
 	@mozTransition:			~"-moz-@{transition}";
 	@operaTransition:		~"-o-@{transition}";
@@ -179,10 +179,10 @@
 	.result(@transition, @duration, @ease, @delay);
 
 	-webkit-transition: @webkitResult;
-			 -moz-transition: @mozResult;
-				-ms-transition: @msResult;
-				 -o-transition: @operaResult;
-				 		transition: @w3cResult;
+		 -moz-transition: @mozResult;
+			-ms-transition: @msResult;
+			 -o-transition: @operaResult;
+			 		transition: @w3cResult;
 
 }
 
